@@ -29,48 +29,48 @@ module.exports = function walkCollectionTree(collection, customizerCallback) {
 			const path = stack.concat(key)
 
 			/**
+			 * <- { value, key, path, remove, skip } - all keys them are optional.
+			 *
+			 * Use { skip: true } for not traversing colection (for improving performance etc).
+			 * Use { remove: true } for not adding property to new collection.
+			 *
 			 * [...path] - for path array immutability.
 			 */
 			const customizerData = customizerCallback(value, key, [...path], newCollection) || {}
 
-			let {
-				value: finalValue = value,
-				path: finalPath = path,
-				key: customizerKey,
-				remove: customizerRemoveProperty,
-				/**
-				 * We can use 'skip: true' if we don't wanna traverse colection and add it 'as is'
-				 * for example for improving performance.
-				 */
-				skip: customizerSkipCollection,
-			} = customizerData
+			/**
+			 * We must use 'hasOwnProperty' instead of destructuring with default values
+			 * so that, we can pass { value: undefined } from customizer.
+			 */
+			const finalValue = customizerData.hasOwnProperty('value') ? customizerData.value : value
+			const finalPath = customizerData.hasOwnProperty('path') ? customizerData.path : path
 
 			/**
 			 * If we pass 'key' in customizer - update path for this property.
 			 */
-			if (customizerKey) {
-				finalPath[finalPath.length - 1] = customizerKey
+			if (customizerData.key) {
+				finalPath[finalPath.length - 1] = customizerData.key
 			}
 
 			/**
-			 * Start create properties for new collection.  
+			 * Main logic.
 			 */
-			if (_.isObject(value) && !customizerSkipCollection) {
+			if (_.isObject(value) && !customizerData.skip) {
 				/**
 				 * Recreating collection structure (schema).
 				 * Without this empty property and property without primitives will no be added.
 				 */
-				if (_.isEmpty(value) && !customizerRemoveProperty) {
+				if (_.isEmpty(value) && !customizerData.remove) {
 					return _.set(newCollection, finalPath, _.isArray(value) ? [] : {})
 				}
 				/**
 				 * Recurcive call to traverse nested collection.
 				 */
 				traverseRecursive(value, newCollection, path)
-			} else if (!customizerRemoveProperty) {
-			/**
-			 * Processing primitive values or skipped collection.
-			 */
+			} else if (!customizerData.remove) {
+				/**
+				 * Processing primitive values or skipped collection.
+				 */
 				_.set(newCollection, finalPath, finalValue)
 			}
 		})
