@@ -1,4 +1,4 @@
-# is-null-or-empty
+# Walk Tree
 
 Powerful utility for recursively traversing Arrays and Objects. It's like 'reduce', but recursive. 
 
