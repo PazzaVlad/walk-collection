@@ -1,6 +1,6 @@
 # Walk Tree
 
-Powerful utility for recursively traversing Arrays and Objects. It's like 'reduce', but recursive. 
+Generic utility for recursively traversing Arrays and Objects. It's like 'reduce', but recursive. 
 
 ## Usage
 

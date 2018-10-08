@@ -1,5 +1,5 @@
 {
-  "name": "walk-collection-tree",
+  "name": "walk-collection",
   "version": "1.2.1",
   "description": "Useful utility for recursively traversing Arrays and Objects.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PazzaVlad/walk-collection-tree.git"
+    "url": "https://github.com/PazzaVlad/walk-collection.git"
   },
   "keywords": [
     "recursion",
