@@ -3,9 +3,6 @@
 const _ = require('lodash')
 
 /**
- * @todo создать гитхаб репо
- * опубликовать NPM
- *
  * Recursively traverse collection (Object/Array etc)
  *
  * @param {object|array} collection - Object/Array for traversing.
