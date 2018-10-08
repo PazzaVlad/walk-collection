@@ -1,13 +1,20 @@
 {
-  "name": "traverse-collection-tree",
+  "name": "walk-tree",
   "version": "1.2.0",
-  "description": "",
+  "description": "Useful utility for recursively traversing Arrays and Objects.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PazzaVlad/walk-tree.git"
+  },
   "keywords": [
     "recursion",
+    "traverse",
+    "arary",
+    "object",
     "collection"
   ],
   "author": "Vlad Harb",
