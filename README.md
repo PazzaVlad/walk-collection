@@ -6,6 +6,8 @@ Powerful utility for recursively traversing Arrays and Objects. It's like 'reduc
 
 See tests for examples.
 
+@todo - write eloquent examples.
+
 ## License
 
 MIT
