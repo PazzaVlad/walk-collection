@@ -189,6 +189,32 @@ describe('General', function() {
 		assert.deepEqual(generalPassedCollection.treeArrayWithObjects[0].some, 1)
 	})
 
+	/**
+	 * @todo Fix bug with numric keys.
+	 * Problec with lodash's '_.set' https://github.com/lodash/lodash/issues/4017
+	 */
+	it('correctly process collection with numeric keys', function() {
+		const collection = {data: {
+			'2018': [
+				{ price: 0.663861},
+				{ price: 0.75196 },
+				{ price: 0.754964 },
+				{ price: 0.62916 },
+				{ price: 0.753221 },
+			],
+			'2019': [
+				{ price: 0.788176 },
+				{ price: 0.790759 },
+				{ price: 0.856103 },
+				{ price: 0.867188 },
+			],
+		}}
+
+		const result = traverseTree(collection, (value, key, path) => {})
+
+		assert.deepEqual(collection, result)
+	})
+
 	it('returns same collection for empty customizer', function() {
 		const array = [4, 'good', { some: { other: false } }]
 
