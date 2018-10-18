@@ -167,7 +167,10 @@ describe('Real Use Cases', function() {
 		})
 
 		const resultUnflatten = traverseTree(resultFlatten, (value, key, path) => {
-			return { path: key.split('.') }
+			/**
+			 * We use Number(v) for converting numeric kes to array.
+			 */
+			return { path: key.split('.').map(v => isNaN(Number(v)) ? v : Number(v) )}
 		})
 
 		assert.deepEqual(generalPassedCollection, resultUnflatten)
@@ -189,10 +192,6 @@ describe('General', function() {
 		assert.deepEqual(generalPassedCollection.treeArrayWithObjects[0].some, 1)
 	})
 
-	/**
-	 * @todo Fix bug with numric keys.
-	 * Problec with lodash's '_.set' https://github.com/lodash/lodash/issues/4017
-	 */
 	it('correctly process collection with numeric keys', function() {
 		const collection = { data: {
 			'2018': [
