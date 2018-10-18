@@ -194,7 +194,7 @@ describe('General', function() {
 	 * Problec with lodash's '_.set' https://github.com/lodash/lodash/issues/4017
 	 */
 	it('correctly process collection with numeric keys', function() {
-		const collection = {data: {
+		const collection = { data: {
 			'2018': [
 				{ price: 0.663861},
 				{ price: 0.75196 },
