@@ -24,7 +24,7 @@ module.exports = function walkCollectionTree(collection, customizerCallback) {
 	 */
 	function traverseRecursive(collection, newCollection, stack = []) {
 		_.forEach(collection, (value, key) => {
-			const path = stack.concat(key)
+			const path = [...stack, key]
 
 			/**
 			 * <- { value, key, path, remove, skip } - all keys them are optional.
