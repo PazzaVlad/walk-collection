@@ -4,7 +4,8 @@
   "description": "Useful utility for recursively traversing Arrays and Objects.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "benchmark": "nodemon benchmark/benchmark.js"
   },
   "repository": {
     "type": "git",

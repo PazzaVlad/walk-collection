@@ -40,8 +40,8 @@ module.exports = function walkCollectionTree(collection, customizerCallback) {
 			 * We must use 'hasOwnProperty' instead of destructuring with default values
 			 * so that, we can pass { value: undefined } from customizer.
 			 */
-			const finalValue = customizerData.hasOwnProperty('value') ? customizerData.value : value
-			const finalPath = customizerData.hasOwnProperty('path') ? customizerData.path : path
+			const finalValue = customizerData.value === undefined ? value : customizerData.value
+			const finalPath = customizerData.path === undefined ? path : customizerData.path
 
 			/**
 			 * If we pass 'key' in customizer - update path for this property.
