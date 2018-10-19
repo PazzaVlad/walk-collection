@@ -32,19 +32,21 @@ function generateSampleObject() {
 	}
 }
 
-function runBenchmark(sampleObject) {
+function runBenchmark(sampleObject, iterations = 20) {
 	const hrstart = process.hrtime()
 
-  let traversedItems = 0
-	traverseTree(sampleObject, (value, key, path) => {
-    traversedItems++
-  })
+	let traversedItems = 0
+	for (let i = 0; i < iterations; i++) {
+		traverseTree(sampleObject, (value, key, path) => {
+			traversedItems++
+		})
+	}
 
-  const hrend = process.hrtime(hrstart)
+	const hrend = process.hrtime(hrstart)
 
-	console.info(`Traversed ${traversedItems} items in ${hrend[0]}s ${hrend[1] / 1000000}ms`)
+	console.info(
+		`Traversed ${traversedItems / iterations} items ${iterations} times in ${hrend[0]}s ${hrend[1] / 1000000}ms (Average ${hrend[1] / 1000000 / 20}s)`
+	)
 }
 
-for (let i = 0; i < 20; i++) {
-	runBenchmark(generateSampleObject())
-}
+runBenchmark(generateSampleObject(), 20)
