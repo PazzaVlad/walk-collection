@@ -1,6 +1,6 @@
 {
   "name": "walk-collection",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Useful utility for recursively traversing Arrays and Objects.",
   "main": "index.js",
   "scripts": {
