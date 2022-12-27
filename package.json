@@ -2,9 +2,9 @@
   "name": "walk-collection",
   "version": "1.4.3",
   "description": "Useful utility for recursively traversing Arrays and Objects.",
-  "main": "index.js",
   "type": "module",
   "scripts": {
+    "build": "npx parcel build index.js --dist-dir dist --no-source-maps --no-cache",
     "test": "npx mocha",
     "benchmark": "nodemon benchmark/benchmark.js"
   },
