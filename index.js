@@ -1,4 +1,4 @@
-import { walkCollectionTree } from './src/lib.js'
+import { walkCollection } from './src/lib.js'
 
-export { walkCollectionTree }
-export default walkCollectionTree
+export { walkCollection }
+export default walkCollection

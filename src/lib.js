@@ -9,7 +9,7 @@ import { set } from './set.js'
  *
  * @returns {object} - New Collection
  */
-export function walkCollectionTree(collection, customizerCallback) {
+export function walkCollection(collection, customizerCallback) {
 	if (!isFunction(customizerCallback)) {
 		throw new Error('Customizer must be a function!')
 	}
