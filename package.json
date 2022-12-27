@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "Useful utility for recursively traversing Arrays and Objects.",
   "type": "module",
+  "main": "index.js",
   "scripts": {
     "build": "npx parcel build index.js --dist-dir dist --no-source-maps --no-cache",
     "test": "npx mocha",
