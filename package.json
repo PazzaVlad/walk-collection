@@ -3,8 +3,9 @@
   "version": "1.4.3",
   "description": "Useful utility for recursively traversing Arrays and Objects.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "mocha",
+    "test": "npx mocha",
     "benchmark": "nodemon benchmark/benchmark.js"
   },
   "repository": {
@@ -21,6 +22,6 @@
   "author": "Vlad Harb",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.11"
+    "lodash-es": "^4.17.21"
   }
 }

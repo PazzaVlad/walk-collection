@@ -1,5 +1,3 @@
-'use strict'
-
 const isObject = (value) => {
 	const type = typeof value
 	return value != null && (type == 'object' || type == 'function')
@@ -11,7 +9,7 @@ const isObject = (value) => {
  * - Works only with 'path' as array
  * - Always treat strings in 'path' as object property and numbers as array indexes.
  */
-module.exports = function set(object, path, value) {
+export function set(object, path, value) {
 	if (!isObject(object)) {
 		return object
 	}

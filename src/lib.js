@@ -1,7 +1,5 @@
-'use strict'
-
-const _ = require('lodash')
-const set = require('./set') 
+import { forEach, isFunction, isObject, isEmpty } from 'lodash-es'
+import { set } from './set.js'
 
 /**
  * Recursively traverse collection (Object/Array etc)
@@ -11,11 +9,11 @@ const set = require('./set')
  *
  * @returns {object} - New Collection
  */
-module.exports = function walkCollectionTree(collection, customizerCallback) {
-	if (!_.isFunction(customizerCallback)) {
+export function walkCollectionTree(collection, customizerCallback) {
+	if (!isFunction(customizerCallback)) {
 		throw new Error('Customizer must be a function!')
 	}
-	if (!_.isObject(collection)) {
+	if (!isObject(collection)) {
 		return collection
 	}
 
@@ -23,7 +21,7 @@ module.exports = function walkCollectionTree(collection, customizerCallback) {
 	 * Walk through object tree.
 	 */
 	function traverseRecursive(collection, newCollection, stack = []) {
-		_.forEach(collection, (value, key) => {
+		forEach(collection, (value, key) => {
 			const path = [...stack, key]
 
 			/**
@@ -41,7 +39,7 @@ module.exports = function walkCollectionTree(collection, customizerCallback) {
 			 * so that, we can pass { value: undefined } from customizer.
 			 */
 			const finalValue = customizerData.hasOwnProperty('value') ? customizerData.value : value
-			const finalPath = customizerData.hasOwnProperty('path') ? customizerData.path : path 
+			const finalPath = customizerData.hasOwnProperty('path') ? customizerData.path : path
 
 			/**
 			 * If we pass 'key' in customizer - update path for this property.
@@ -53,12 +51,12 @@ module.exports = function walkCollectionTree(collection, customizerCallback) {
 			/**
 			 * Main logic.
 			 */
-			if (_.isObject(value) && !customizerData.skip) {
+			if (isObject(value) && !customizerData.skip) {
 				/**
 				 * Recreating collection structure (schema).
 				 * Without this empty property and property without primitives will no be added.
 				 */
-				if (_.isEmpty(value) && !customizerData.remove) {
+				if (isEmpty(value) && !customizerData.remove) {
 					return set(newCollection, finalPath, Array.isArray(value) ? [] : {})
 				}
 				/**

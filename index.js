@@ -1,1 +1,4 @@
-module.exports = require('./src/lib')
+import { walkCollectionTree } from './src/lib.js'
+
+export { walkCollectionTree }
+export default walkCollectionTree

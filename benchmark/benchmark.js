@@ -1,13 +1,10 @@
-'use strict'
-
-const _ = require('lodash')
-
-const traverseTree = require('./../index')
+import { times, zipObject } from 'lodash-es'
+import traverseTree from './../index.js'
 
 function generateSampleObject() {
-	const arrayWithStrings = _.times(500, (i) => `some data ${i}`)
-	const arrayWithNumbers = _.times(500, (i) => i + 5 * 15)
-	const obj = _.zipObject(arrayWithStrings, arrayWithNumbers)
+	const arrayWithStrings = times(500, (i) => `some data ${i}`)
+	const arrayWithNumbers = times(500, (i) => i + 5 * 15)
+	const obj = zipObject(arrayWithStrings, arrayWithNumbers)
 	const nestedData = {
 		fake: 4,
 		fake2: 45,
@@ -22,7 +19,7 @@ function generateSampleObject() {
 			},
 		},
 	}
-	const nestedArr = _.times(100, (i) => _.times(15, (x) => nestedData))
+	const nestedArr = times(100, (i) => times(15, (x) => nestedData))
 
 	return {
 		...obj,

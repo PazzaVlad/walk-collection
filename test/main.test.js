@@ -1,7 +1,6 @@
-const assert = require('assert').strict
-const _ = require('lodash')
-
-const traverseTree = require('./../index')
+import { strict as assert } from 'assert'
+import { isNumber, isObject, isEmpty, omit } from 'lodash-es'
+import traverseTree from './../index.js'
 
 /**
  * General data
@@ -45,7 +44,7 @@ describe('Real Use Cases', function() {
 		}
 
 		const result = traverseTree(collection, (value, key, path) => {
-			if (_.isNumber(value)) {
+			if (isNumber(value)) {
 				return { value: value * 2 }
 			}
 		})
@@ -82,12 +81,12 @@ describe('Real Use Cases', function() {
 
 	it('remove branches without primitive', function() {
 		const result = traverseTree(generalPassedCollection, (value, key, path) => {
-			if (_.isObject(value) && _.isEmpty(value)) {
+			if (isObject(value) && isEmpty(value)) {
 				return { remove: true }
 			}
 		})
 
-		const expected = _.omit(generalPassedCollection, 'treeWithoutPrimitive')
+		const expected = omit(generalPassedCollection, 'treeWithoutPrimitive')
 
 		assert.deepEqual(result, expected)
 	})
@@ -140,7 +139,7 @@ describe('Real Use Cases', function() {
 			if (key === 'tech') {
 				return { skip: true, value: [value, value] }
 			}
-			if (!_.isObject(value)) {
+			if (!isObject(value)) {
 				return { value: [value, value] }
 			}
 		})
